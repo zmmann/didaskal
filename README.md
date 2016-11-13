@@ -13,5 +13,7 @@ This step is to ensure that your local 'master' branch is up to date with the la
 If you've done work and you're ready to save it to the online repo, follow these three commands:
 
 `git add -A` will 'stage' your changes and let git know you want to save them
+
 `git commit -m '(your message here)'` this commits your changes, and you can (and should) add a message describing your changes in the commit, such as `git commit -m 'update readme with git tips for zach'`... traditionally the message is written in present tense
+
 `git push` will actually push the changes and commit to the online repo where it can then be shared
