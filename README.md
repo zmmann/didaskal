@@ -1,9 +1,5 @@
 # didaskal
 
-#DO NOT DELETE
-
-Basic steps:
-
 ## Pulling master
 
 This step is to ensure that your local 'master' branch is up to date with the latest version on Github. Don't worry about branches for now, you can just stay on the 'master' branch. Simply type in the following while you're in the git repo thru terminal: `git pull` and it will update your local files to match the online repo.
