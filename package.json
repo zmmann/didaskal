@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/zmmann/didaskal/issues"
   },
-  "homepage": "https://github.com/zmmann/didaskal#readme"
+  "homepage": "https://github.com/zmmann/didaskal#readme",
+  "engines": {
+    "node": "6.5.0"
+  }
 }
