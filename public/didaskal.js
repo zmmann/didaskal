@@ -9,20 +9,11 @@ var $alterationBlock = $("#alteration-block");
 
 // Create an object containing pairs of option values with the option tag
 var OPTIONVALUES = {
-  'linebreak'     : 'br',
-  'italics'       : 'em',
-  'bold'          : 'strong',
-  'underline'     : 'u',
-  'strikethrough' : 's',
-  'superscript'   : 'superscript',
-  'subscript'     : 'subscript',
-  'small'         : 'small',
-  'large'         : 'large',
-  'typewriter'    : 'tt',
-  'paragraph'     : 'p',
-  'section'       : 'div',
-  'headline'      : 'h1',
-  'subheader'     : 'h2',
+  'br': 'linebreak',
+  'em': 'italic',
+  'strong': 'bold',
+  'u': 'underline',
+  's': 'strikethrough',
 };
 
 function addBlock() {
@@ -34,7 +25,10 @@ function addBlock() {
   // Iterate through the OPTIONVALUES object and append an option with a pairing
   // of key (left) as option value and value (right) as the visible text
   for (var prop in OPTIONVALUES) {
-    $selector.append(`<option value="${prop}">${OPTIONVALUES[prop]}</option>`);
+    if (OPTIONVALUES.hasOwnProperty(prop)) {
+      $selector.append(
+        `<option value="${prop}">${OPTIONVALUES[prop]}</option>`);
+    }
   }
 
   // Use jQuery to create a blank <textarea> HTML element
@@ -46,13 +40,14 @@ function addBlock() {
   $alterationBlock.append($div);
 }
 
-for (var i = 0; i < 13; i++) {
+for (var i = 0; i < 5; i++) {
   addBlock();
 }
 
-var $button = $("<button/>").text("click meh");
+var $button = $("#le-button");
+
 $button.on("click", function () {
-  var areas = $("textarea");
+  var areas = $("#alteration-block textarea");
   areas = areas.map(function (idx, el) {
     return el.value;
   });
@@ -62,15 +57,28 @@ $button.on("click", function () {
     return el.value;
   });
 
+  // We now create a new object that contains the pairings of the user's
+  // custom names with the corresponding markup elements
   var objecto = {};
   for (var j = 0; j < areas.length; j++) {
-    objecto[areas[j]] = selectors[j];
+    if (selectors[j] !== "0") {
+      objecto[areas[j]] = selectors[j];
+    }
   }
 
-  console.log(objecto);
-});
+  // This 'code' variable grabs the user's custom markup input
+  var code = $("#code textarea")[0];
 
-$alterationBlock.append($button);
+  // jQuery has a special 'parseHTML' function that turns a string (input)
+  // into actual HTML
+  var html = $.parseHTML(code.value);
+
+  // Missing for now: the step where we make the substitutions with the user's
+  // custom naming conventions
+
+  // We then clear the contents of the #frame div and inject the HTML into it
+  $("#frame").empty().append(html);
+});
 
 // Basically, jQuery uses CSS selectors to "query" the HTML file and pull
 // matching elements. To refresh your memory:

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Didaskal</title>
+    <title>DidaSkal</title>
 
     <!-- This adds the jQuery script to the page so we can use jQuery in our code -->
     <script
@@ -15,13 +15,25 @@
   </head>
   <body>
     <div id="root">
+      <!-- This is where we hold our modifiers -->
       <div id="alteration-block">
       </div>
 
+      <!-- This is where user inputs their version of markup -->
       <div id="code">
+        <textarea
+          style="width:441px;height:500px;"
+          placeholder="Code goes here..."
+        ></textarea>
+
+        <!-- This is the button that gets the magic going -->
+        <button id="le-button">Click me!</button>
       </div>
 
-      <div id="iframe">
+
+      <!-- This is where the user's custom markup will be rendered -->
+      <div id="frame">
+        Code will appear here.
       </div>
     </div>
 
