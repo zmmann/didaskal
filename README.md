@@ -16,4 +16,4 @@ If you've done work and you're ready to save it to the online repo, follow these
 
 ## Running the server
 
-Navigate to the project folder in terminal. Run `npm install` if it is your first time running the server. Then type `npm start` and hit enter. You can now test the site by navigating to `localhost:3000` in your browser.
+Navigate to the project folder in terminal. Run `npm install` if it is your first time running the server. Then type `npm start` and hit enter. You can now test the site by navigating to `localhost:5000` in your browser.
