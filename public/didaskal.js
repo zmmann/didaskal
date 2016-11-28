@@ -68,8 +68,7 @@ $button.on("click", function () {
 
   // This 'code' variable grabs the user's custom markup input
   var code = $("#code textarea")[0].value;
-  code = code.replace(/\r?\n|\r/g, '<br>');
-  console.log(code);
+  code = code.replace(/\r?\n|\r/g, '<br>'); // convert 'newline' to '<br>'
 
   for (var alteration in objecto) {
     if (objecto.hasOwnProperty(alteration)) {
