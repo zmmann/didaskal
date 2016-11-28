@@ -8,4 +8,9 @@
 
 #frame {
   background-color: #ffbaf8;
+  font-family: monospace;
+}
+
+textarea {
+  font-family: monospace;
 }

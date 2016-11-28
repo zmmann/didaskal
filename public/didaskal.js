@@ -11,7 +11,7 @@ var $alterationBlock = $("#alteration-block");
 var OPTIONVALUES = {
   'br': 'linebreak',
   'em': 'italic',
-  'strong': 'bold',
+  'b': 'bold',
   'u': 'underline',
   's': 'strikethrough',
 };
@@ -67,11 +67,19 @@ $button.on("click", function () {
   }
 
   // This 'code' variable grabs the user's custom markup input
-  var code = $("#code textarea")[0];
+  var code = $("#code textarea")[0].value;
+
+  for (var alteration in objecto) {
+    if (objecto.hasOwnProperty(alteration)) {
+      // code.replace(regex, string) scans the string and any match found by the
+      // 'regex' is replaced by the 'string'
+      code = code.replace(new RegExp(alteration, 'g'), objecto[alteration]);
+    }
+  }
 
   // jQuery has a special 'parseHTML' function that turns a string (input)
   // into actual HTML
-  var html = $.parseHTML(code.value);
+  var html = $.parseHTML(code);
 
   // Missing for now: the step where we make the substitutions with the user's
   // custom naming conventions
