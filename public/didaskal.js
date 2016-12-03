@@ -54,9 +54,15 @@ function addBlock() {
   $alterationBlock.append($div);
 }
 
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 4; i++) {
   addBlock();
 }
+
+var $addtag = $("#add-button");
+
+$addtag.on("click", function () {
+  addBlock();
+  });
 
 var $button = $("#le-button");
 
