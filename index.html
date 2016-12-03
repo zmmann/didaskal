@@ -16,27 +16,42 @@
   <body>
     <div id="root">
       <!-- This is where we hold our modifiers -->
-      <div id="alteration-block">
-      </div>
-
+        <div id="directions">
+        <h1><span class="title">DidaSkal</span><br>&lt; <span class="subtitle">a theater</span> &gt;<br>for code performance</h1>
+          <div id="alteration-block">
+          </div>
+        </div>
       <!-- This is where user inputs their version of markup -->
-      <div id="code">
-        <textarea
-          style="width:441px;height:500px;"
-          placeholder="Code goes here!"
-        ></textarea>
+        <div id="script">
+          <div id="code">
+          <textarea
+          style="width:96%;height:500px;"
+          placeholder="Enter script here using the stage directions on the left. Functions (except linebreaks) may require closing tags.
 
-        <!-- This is the button that gets the magic going -->
-        <button id="le-button">Click me!</button>
+Example:
+
+[select tag]: italic
+Stage Direction: without Prospero & Caliban
+
+[select tag]: bold
+Stage Direction: colonizers that aren't my father
+
+[select tag]: linebreak
+Stage Direction: sea-change
+
+Script: O brave new <without Prospero & Caliban>world</without Prospero & Caliban>,<sea-change>That has such <colonizers that aren't my father>people</colonizers that aren't my father> in 't!"
+          ></textarea>
+      <!-- This is the button that gets the magic going -->
+        <button id="le-button">perform</button>
+        </div>
       </div>
-
-
       <!-- This is where the user's custom markup will be rendered -->
-      <div id="frame">
-        Code will appear here.
+      <div id="stage">
+        <div id="frame">
+        O brave new <em>world</em>,<br>That has such <strong>people</strong> in 't!
+        </div>
       </div>
     </div>
-
     <!-- The below is where we summon the script file that carries out our commands -->
     <script src="/didaskal.js"></script>
   </body>

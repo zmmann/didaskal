@@ -14,13 +14,27 @@ var OPTIONVALUES = {
   'b': 'bold',
   'u': 'underline',
   's': 'strikethrough',
+  'blockquote': 'blockquote',
+  'h1': 'headline',
+  'p': 'paragraph',
+  'span class=smallcaps': 'small caps',
+  'span class=whiteout': 'whiteout',
+  'span class=darkgray': 'dark gray',
+  'span class=lightgray': 'light gray',
+  'button': 'button',
+  'input': 'input field',
+  'mark': 'highlight',
+  'q': 'quotation marks',
+  'sup': 'superscript',
+  'p class=rightalign': 'right align',
+  'p class=centeralign': 'center align',
 };
 
 function addBlock() {
   var $div = $("<div/>");
   // Use jQuery to create a <select> HTML element and append the default option
   var $selector = $("<select/>")
-  .append('<option value="0" selected="selected">[choose yours]</option>');
+  .append('<option value="0" selected="selected">[select tag]</option>');
 
   // Iterate through the OPTIONVALUES object and append an option with a pairing
   // of key (left) as option value and value (right) as the visible text
@@ -59,25 +73,31 @@ $button.on("click", function () {
 
   // We now create a new object that contains the pairings of the user's
   // custom names with the corresponding markup elements
-  var objecto = {};
-  for (var j = 0; j < areas.length; j++) {
-    if (selectors[j] !== "0") {
-      objecto[areas[j]] = selectors[j];
-    }
+var objecto = {}, key, val;
+
+for (var j = 0; j < areas.length; j++) {
+  if (selectors[j] !== "0") {
+    key = areas[j].replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    val = selectors[j];
+    objecto[key] = val;
   }
+}
 
   // This 'code' variable grabs the user's custom markup input
   var code = $("#code textarea")[0].value;
   code = code.replace(/\r?\n|\r/g, '<br>'); // convert 'newline' to '<br>'
 
-  for (var alteration in objecto) {
-    if (objecto.hasOwnProperty(alteration)) {
-      // code.replace(regex, string) scans the string and any match found by the
-      // 'regex' is replaced by the 'string'
-      code = code.replace(new RegExp(alteration, 'g'), objecto[alteration]);
-    }
+for (var alteration in objecto) {
+  if (objecto.hasOwnProperty(alteration)) {
+    // code.replace(regex, string) scans the string and any match found by the
+    // 'regex' is replaced by the 'string'
+    var substitution = objecto[alteration];
+    var openAlt = `<${alteration}>`, closeAlt = `</${alteration}>`;
+    var openSub = `<${substitution}>`, closeSub = `</${substitution}>`;
+    code = code.replace(new RegExp(openAlt, 'g'), openSub);
+    code = code.replace(new RegExp(closeAlt, 'g'), closeSub);
   }
-
+}
   // jQuery has a special 'parseHTML' function that turns a string (input)
   // into actual HTML
   var html = $.parseHTML(code);
@@ -87,6 +107,8 @@ $button.on("click", function () {
 
   // We then clear the contents of the #frame div and inject the HTML into it
   $("#frame").empty().append(html);
+
+  console.log(objecto)
 });
 
 // Basically, jQuery uses CSS selectors to "query" the HTML file and pull
