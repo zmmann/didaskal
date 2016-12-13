@@ -1,4 +1,6 @@
-// jQuery is a Javascript library that gives us shortcuts to manipulating
+// DidaSkal: A Theater for Code Performance 
+
+// jQuery is a Javascript library that provides shortcuts to manipulating
 // the objects on an HTML document.
 // If you want to see the jQuery documentation:
 // http://api.jquery.com/
@@ -9,14 +11,10 @@ var $alterationBlock = $("#alteration-block");
 
 // Create an object containing pairs of option values with the option tag
 var OPTIONVALUES = {
-  'br': 'linebreak',
   'em': 'italic',
   'b': 'bold',
   'u': 'underline',
   's': 'strikethrough',
-  'blockquote': 'blockquote',
-  'h1': 'headline',
-  'p': 'paragraph',
   'span class=smallcaps': 'small caps',
   'span class=whiteout': 'whiteout',
   'span class=darkgray': 'dark gray',
@@ -28,6 +26,10 @@ var OPTIONVALUES = {
   'sup': 'superscript',
   'p class=rightalign': 'right align',
   'p class=centeralign': 'center align',
+  'blockquote': 'blockquote',
+  'br': 'linebreak',
+  'h1': 'headline',
+  'p': 'paragraph',
 };
 
 function addBlock() {
@@ -48,7 +50,7 @@ function addBlock() {
   // Use jQuery to create a blank <textarea> HTML element
   var $textArea = $("<textarea/>");
 
-  // Use jQuery to insert our created select element and textarea element into
+  // Use jQuery to insert created select element and textarea element into
   // the alteration block
   $div.append($selector, $textArea);
   $alterationBlock.append($div);
@@ -58,12 +60,14 @@ for (var i = 0; i < 4; i++) {
   addBlock();
 }
 
+  // Add button to add more tag fields
 var $addtag = $("#add-button");
 
 $addtag.on("click", function () {
   addBlock();
   });
 
+  // Add THE button
 var $button = $("#le-button");
 
 $button.on("click", function () {
@@ -77,7 +81,7 @@ $button.on("click", function () {
     return el.value;
   });
 
-  // We now create a new object that contains the pairings of the user's
+  // Create a new object that contains the pairings of the user's
   // custom names with the corresponding markup elements
 var objecto = {}, key, val;
 
@@ -108,17 +112,13 @@ for (var alteration in objecto) {
   // into actual HTML
   var html = $.parseHTML(code);
 
-  // Missing for now: the step where we make the substitutions with the user's
-  // custom naming conventions
-
-  // We then clear the contents of the #frame div and inject the HTML into it
+  // Clear the contents of the #frame div and inject the HTML into it
   $("#frame").empty().append(html);
 
   console.log(objecto)
 });
 
-// Basically, jQuery uses CSS selectors to "query" the HTML file and pull
-// matching elements. To refresh your memory:
-// Selector for finding any element with the class foo: .foo
-// Selector for finding any element with the id foo (should only be one): #foo
-// Selector for finding any foo element: foo
+// Credits:
+
+// Concept & Design by Zach Mann (zachmankofsky.com)
+// Coding consultation courtesy of Bihn Kim (angel.co/bihn-kim)

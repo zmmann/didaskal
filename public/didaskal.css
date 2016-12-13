@@ -97,6 +97,7 @@ h2 {
 	font-family: helvetica;
     border: solid 0px #768d87;
 	font-weight: lighter;
+	white-space: pre-wrap;
 }
 #stage {
   background-color:#fff;
